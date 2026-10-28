@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ quiz["title"] }}
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>{{ quiz["title"] }}</h1>
+
+    <p>Answer all questions.</p>
+
+    <form method="POST">
+
+        {% for question in questions %}
+
+        <div class="course-card">
+
+            <h3>
+                {{ loop.index }}. {{ question["question"] }}
+            </h3>
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="{{ question['option1'] }}"
+                    required
+                >
+                {{ question["option1"] }}
+            </label>
+
+            <br><br>
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="{{ question['option2'] }}"
+                >
+                {{ question["option2"] }}
+            </label>
+
+            <br><br>
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="{{ question['option3'] }}"
+                >
+                {{ question["option3"] }}
+            </label>
+
+            <br><br>
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="{{ question['option4'] }}"
+                >
+                {{ question["option4"] }}
+            </label>
+
+        </div>
+
+        {% else %}
+
+        <p>No questions available for this quiz.</p>
+
+        {% endfor %}
+
+
+        {% if questions %}
+
+        <button type="submit">
+            Submit Quiz
+        </button>
+
+        {% endif %}
+
+    </form>
+
+    <br>
+
+    <a href="/dashboard">
+        <button type="button">
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+{% endblock %}

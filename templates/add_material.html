@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Study Material
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Add Study Material</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label>Material Title</label>
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Example: Python Notes"
+            required
+        >
+
+        <label>Material Type</label>
+
+        <select name="material_type" required>
+
+            <option value="">Select Type</option>
+
+            <option value="PDF">PDF</option>
+
+            <option value="Video">Video</option>
+
+            <option value="Notes">Notes</option>
+
+        </select>
+
+        <label>Choose Material File</label>
+
+        <input
+            type="file"
+            name="material_file"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Upload Material
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

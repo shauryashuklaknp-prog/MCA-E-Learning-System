@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Quiz
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Edit Quiz</h1>
+
+    <form method="POST">
+
+        <label>Quiz Title</label>
+
+        <input
+            type="text"
+            name="title"
+            value="{{ quiz['title'] }}"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Update Quiz
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/admin-dashboard">
+        <button type="button">
+            Cancel
+        </button>
+    </a>
+
+</div>
+
+{% endblock %}

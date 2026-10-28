@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+Quiz Results
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Student Quiz Results</h1>
+
+    <hr>
+
+    {% for result in results %}
+
+    <div class="course-card">
+
+        <h3>
+            {{ result["student_name"] }}
+        </h3>
+
+        <p>
+            <strong>Quiz:</strong>
+            {{ result["quiz_title"] }}
+        </p>
+
+        <p>
+            <strong>Score:</strong>
+            {{ result["score"] }} / {{ result["total"] }}
+        </p>
+
+        {% if result["total"] > 0 %}
+
+        <p>
+            <strong>Percentage:</strong>
+            {{ "%.2f"|format((result["score"] / result["total"]) * 100) }}%
+        </p>
+
+        {% endif %}
+
+    </div>
+
+    {% else %}
+
+    <p>No quiz results available.</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/admin-dashboard">
+        <button>Back to Admin Dashboard</button>
+    </a>
+
+</div>
+
+{% endblock %}

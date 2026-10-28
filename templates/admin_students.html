@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+All Students
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>All Students</h1>
+
+    <hr>
+
+    {% for student in students %}
+
+    <div class="course-card">
+
+        <h3>{{ student["name"] }}</h3>
+
+        <p>
+            <strong>Email:</strong>
+            {{ student["email"] }}
+        </p>
+
+        <a href="/admin/student-results/{{ student['id'] }}">
+            <button>View Results</button>
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <p>No students available.</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/admin-dashboard">
+        <button>Back to Admin Dashboard</button>
+    </a>
+
+</div>
+
+{% endblock %}

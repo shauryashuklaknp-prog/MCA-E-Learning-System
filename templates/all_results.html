@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}
+All Students Results
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>📊 All Students Results</h1>
+
+    <hr>
+
+    {% if results %}
+
+        {% for result in results %}
+
+            <div class="course-card">
+
+                <h2>{{ result["student_name"] }}</h2>
+
+                <p>
+                    Email:
+                    {{ result["student_email"] }}
+                </p>
+
+                <p>
+                    Quiz:
+                    <strong>{{ result["quiz_title"] }}</strong>
+                </p>
+
+                <p>
+                    Score:
+                    <strong>
+                        {{ result["score"] }}
+                        /
+                        {{ result["total_questions"] }}
+                    </strong>
+                </p>
+
+                {% if result["total_questions"] > 0 %}
+
+                    <p>
+                        Percentage:
+                        <strong>
+                            {{ "%.2f"|format(
+                                (result["score"] / result["total_questions"]) * 100
+                            ) }}%
+                        </strong>
+                    </p>
+
+                    {% set percentage =
+    (result["score"] / result["total_questions"]) * 100
+%}
+
+{% if percentage >= 90 %}
+
+    <p>
+        <strong>Grade:</strong> A+
+    </p>
+
+{% elif percentage >= 80 %}
+
+    <p>
+        <strong>Grade:</strong> A
+    </p>
+
+{% elif percentage >= 70 %}
+
+    <p>
+        <strong>Grade:</strong> B
+    </p>
+
+{% elif percentage >= 60 %}
+
+    <p>
+        <strong>Grade:</strong> C
+    </p>
+
+{% elif percentage >= 50 %}
+
+    <p>
+        <strong>Grade:</strong> D
+    </p>
+
+{% else %}
+
+    <p>
+        <strong>Grade:</strong> F
+    </p>
+
+{% endif %}
+
+
+{% if percentage >= 40 %}
+
+    <p>
+        <strong>Result:</strong> PASS ✅
+    </p>
+
+{% else %}
+
+    <p>
+        <strong>Result:</strong> FAIL ❌
+    </p>
+
+{% endif %}
+
+                {% endif %}
+
+            </div>
+
+            <hr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No quiz results available.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/admin-dashboard">
+        <button>Back to Admin Dashboard</button>
+    </a>
+
+</div>
+
+{% endblock %}

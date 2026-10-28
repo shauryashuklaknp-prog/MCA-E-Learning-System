@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>Admin Dashboard</h1>
+
+    <p>Welcome, Admin!</p>
+
+    <br>
+
+    <a href="/admin/add-course">
+        <button>Add New Course</button>
+    </a>
+
+    <hr>
+
+
+    <!-- ==================== ALL QUIZZES ==================== -->
+
+    <h2>All Quizzes</h2>
+
+    {% for quiz in quizzes %}
+
+    <div class="course-card">
+
+        <h3>{{ quiz["title"] }}</h3>
+
+        <p>
+            Course: {{ quiz["course_title"] }}
+        </p>
+
+        <a href="/admin/add-question/{{ quiz['id'] }}">
+            <button>Add Question</button>
+        </a>
+
+        <a href="/admin/edit-quiz/{{ quiz['id'] }}">
+            <button>Edit Quiz</button>
+        </a>
+
+        <a href="/admin/delete-quiz/{{ quiz['id'] }}"
+           onclick="return confirm('Are you sure you want to delete this quiz? All questions and results will also be deleted.')">
+            <button>Delete Quiz</button>
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <p>No quizzes available.</p>
+
+    {% endfor %}
+
+
+    <hr>
+
+
+    <!-- ==================== ALL QUESTIONS ==================== -->
+
+    <h2>All Questions</h2>
+
+    {% if questions %}
+
+        {% for question in questions %}
+
+        <div class="course-card">
+
+            <h3>{{ question["question"] }}</h3>
+
+            <p>
+                Quiz: {{ question["quiz_title"] }}
+            </p>
+
+            <p>
+                Option 1: {{ question["option1"] }}
+            </p>
+
+            <p>
+                Option 2: {{ question["option2"] }}
+            </p>
+
+            <p>
+                Option 3: {{ question["option3"] }}
+            </p>
+
+            <p>
+                Option 4: {{ question["option4"] }}
+            </p>
+
+            <p>
+                Correct Answer: {{ question["correct_answer"] }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No questions available.</p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <!-- ==================== ALL MATERIALS ==================== -->
+
+    <h2>All Materials</h2>
+
+    {% if materials %}
+
+        {% for material in materials %}
+
+        <div class="course-card">
+
+            <h3>{{ material["title"] }}</h3>
+
+            <p>
+                <strong>Course:</strong>
+                {{ material["course_title"] }}
+            </p>
+
+            <p>
+                <strong>Type:</strong>
+                {{ material["material_type"] }}
+            </p>
+
+            <p>
+                <strong>Link:</strong>
+
+                <a href="{{ material['material_link'] }}" target="_blank">
+                    Open Material
+                </a>
+
+            </p>
+
+            <a href="/admin/edit-material/{{ material['id'] }}">
+                <button>Edit Material</button>
+            </a>
+
+            <a href="/admin/delete-material/{{ material['id'] }}"
+               onclick="return confirm('Are you sure you want to delete this material?');">
+
+                <button>Delete Material</button>
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No materials available.</p>
+
+    {% endif %}
+
+
+    <hr>
+
+
+    <!-- ==================== CREATE QUIZ ==================== -->
+
+    <a href="/admin/add-quiz">
+        <button>Create Quiz</button>
+    </a>
+
+
+    <!-- ==================== ALL COURSES ==================== -->
+
+    <h2 style="margin-top:40px;">
+        All Courses
+    </h2>
+
+    <div class="course-container">
+
+        {% for course in courses %}
+
+        <div class="course-card">
+
+            <h3>{{ course["title"] }}</h3>
+
+            <p>
+                {{ course["description"] }}
+            </p>
+
+            <p>
+                <strong>Duration:</strong>
+                {{ course["duration"] }}
+            </p>
+
+            <p>
+                <strong>Instructor:</strong>
+                {{ course["instructor"] }}
+            </p>
+
+            <a href="/admin/add-material/{{ course['id'] }}">
+                <button>Add Material</button>
+            </a>
+
+            <a href="/admin/edit-course/{{ course['id'] }}">
+                <button>Edit Course</button>
+            </a>
+
+            <a href="/admin/delete-course/{{ course['id'] }}"
+               onclick="return confirm('Are you sure you want to delete this course?')">
+
+                <button>Delete Course</button>
+
+            </a>
+
+        </div>
+
+        {% else %}
+
+        <p>No courses available.</p>
+
+        {% endfor %}
+
+    </div>
+<hr>
+
+<h2>All Materials</h2>
+
+{% if materials %}
+
+    {% for material in materials %}
+
+    <div class="course-card">
+
+        <h3>{{ material["title"] }}</h3>
+
+        <p>
+            <strong>Course:</strong>
+            {{ material["course_title"] }}
+        </p>
+
+        <p>
+            <strong>Type:</strong>
+            {{ material["material_type"] }}
+        </p>
+
+        <p>
+            <strong>Link:</strong>
+            {{ material["material_link"] }}
+        </p>
+
+        <a href="/admin/edit-material/{{ material['id'] }}">
+            <button>Edit Material</button>
+        </a>
+
+        <a href="/admin/delete-material/{{ material['id'] }}"
+           onclick="return confirm('Are you sure you want to delete this material?')">
+            <button>Delete Material</button>
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No materials available.</p>
+
+{% endif %}
+
+    <hr>
+
+
+    <!-- ==================== QUIZ RESULTS ==================== -->
+
+    <h2>Quiz Results</h2>
+
+    <a href="/admin/results">
+        <button type="button">
+            View Student Results
+        </button>
+    </a>
+
+
+    <hr>
+
+
+    <!-- ==================== STUDENT MANAGEMENT ==================== -->
+
+    <h2>Student Management</h2>
+
+    <a href="/admin/students">
+        <button type="button">
+            View All Students
+        </button>
+    </a>
+
+    <a href="/admin/topper">
+        <button>
+            🏆 View Class Topper
+        </button>
+    </a>
+
+    <a href="/admin/all-results">
+        <button>
+            📊 View All Results
+        </button>
+    </a>
+
+
+</div>
+
+{% endblock %}
