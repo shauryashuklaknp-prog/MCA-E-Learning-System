@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+Class Topper
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>🏆 Class Topper</h1>
+
+    <hr>
+
+    {% if topper %}
+
+        <h2>{{ topper["name"] }}</h2>
+
+        <p>
+            Email:
+            {{ topper["email"] }}
+        </p>
+
+        <p>
+            Total Score:
+            {{ topper["total_score"] }}
+            /
+            {{ topper["total_questions"] }}
+        </p>
+
+        <h3>
+            Average Percentage:
+            {{ "%.2f"|format(percentage) }}%
+        </h3>
+
+        {% if prize > 0 %}
+
+            <h2>
+                🎁 Prize: ₹{{ prize }}
+            </h2>
+
+        {% else %}
+
+            <h3>
+                No Prize
+            </h3>
+
+        {% endif %}
+
+    {% else %}
+
+        <p>No quiz results available.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/admin-dashboard">
+        <button>Back to Admin Dashboard</button>
+    </a>
+
+</div>
+
+{% endblock %}
