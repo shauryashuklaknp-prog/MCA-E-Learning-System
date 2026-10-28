@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ course["title"] }}
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>{{ course["title"] }}</h1>
+
+    <p>
+        {{ course["description"] }}
+    </p>
+
+    <p>
+        <strong>Duration:</strong>
+        {{ course["duration"] }}
+    </p>
+
+    <p>
+        <strong>Instructor:</strong>
+        {{ course["instructor"] }}
+    </p>
+
+
+    <hr>
+
+    <h2>Study Materials</h2>
+
+    {% if materials %}
+
+        {% for material in materials %}
+
+        <div class="course-card">
+
+            <h3>{{ material["title"] }}</h3>
+
+            <p>
+                <strong>Type:</strong>
+                {{ material["material_type"] }}
+            </p>
+
+            <a href="{{ material['material_link'] }}" target="_blank">
+                <button>Open Material</button>
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No study materials available.</p>
+
+    {% endif %}
+
+
+    <hr>
+
+    <h2>Available Quizzes</h2>
+
+    {% if quizzes %}
+
+        {% for quiz in quizzes %}
+
+        <div class="course-card">
+
+            <h3>{{ quiz["title"] }}</h3>
+
+            <a href="/quiz/{{ quiz['id'] }}">
+                <button>Start Quiz</button>
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No quizzes available.</p>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="/dashboard">
+        <button>Back to Dashboard</button>
+    </a>
+
+</div>
+
+{% endblock %}

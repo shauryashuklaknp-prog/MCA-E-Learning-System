@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}E-Learning System{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            E-Learning
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/courses">Courses</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="/login" class="login-btn">Login</a>
+            <a href="/register" class="register-btn">Register</a>
+            <a href="/admin-login">Admin</a>
+
+        </div>
+
+    </nav>
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    <footer>
+        <p>© 2026 E-Learning System | MCA Mini Project</p>
+    </footer>
+
+</body>
+</html>

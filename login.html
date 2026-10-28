@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login - E-Learning System
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Student Login</h2>
+
+    <form method="POST">
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <p>
+        Don't have an account?
+        <a href="/register">Create Account</a>
+    </p>
+
+</div>
+
+{% endblock %}

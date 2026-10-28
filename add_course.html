@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Course
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Add New Course</h2>
+
+    <form method="POST">
+
+        <label>Course Title</label>
+        <input
+            type="text"
+            name="title"
+            placeholder="Enter course title"
+            required
+        >
+
+        <label>Description</label>
+        <textarea
+            name="description"
+            placeholder="Enter course description"
+            required
+        ></textarea>
+
+        <label>Duration</label>
+        <input
+            type="text"
+            name="duration"
+            placeholder="Example: 3 Months"
+            required
+        >
+
+        <label>Instructor</label>
+        <input
+            type="text"
+            name="instructor"
+            placeholder="Enter instructor name"
+            required
+        >
+
+        <button type="submit">
+            Add Course
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

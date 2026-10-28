@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Material
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>Edit Material</h1>
+
+    <form method="POST">
+
+        <label>Material Title</label>
+        <br>
+        <input
+            type="text"
+            name="title"
+            value="{{ material['title'] }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Material Type</label>
+        <br>
+        <input
+            type="text"
+            name="material_type"
+            value="{{ material['material_type'] }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Material Link</label>
+        <br>
+        <input
+            type="url"
+            name="material_link"
+            value="{{ material['material_link'] }}"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Update Material
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/admin-dashboard">
+        <button type="button">
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+{% endblock %}

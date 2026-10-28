@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Results</title>
+</head>
+
+<body>
+
+    <h1>Student Results</h1>
+
+    <h2>Student Name: {{ student["name"] }}</h2>
+    <p>Email: {{ student["email"] }}</p>
+
+    <hr>
+
+    {% if results %}
+
+        {% for result in results %}
+
+            <h3>Quiz: {{ result["quiz_title"] }}</h3>
+
+            <p>
+                Score:
+                {{ result["score"] }}
+                /
+                {{ result["total_questions"] }}
+            </p>
+
+            <p>
+                Percentage:
+                {{ ((result["score"] / result["total_questions"]) * 100)|round(2) }}%
+            </p>
+
+            <hr>
+
+        {% endfor %}
+
+        <hr>
+
+<h2>
+    Average Percentage:
+    {{ "%.2f"|format(average_percentage) }}%
+</h2>
+
+    {% else %}
+
+        <p>No quiz results available for this student.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/admin/students">Back to Students</a>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Results
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>My Quiz Results</h1>
+
+    <hr>
+
+    {% if results %}
+
+        {% for result in results %}
+
+        <div class="course-card">
+
+            <h2>
+                {{ result["quiz_title"] }}
+            </h2>
+
+            <p>
+                <strong>Score:</strong>
+                {{ result["score"] }} / {{ result["total_questions"] }}
+            </p>
+
+            {% if result["total_questions"] > 0 %}
+
+                {% set percentage =
+                    (result["score"] / result["total_questions"]) * 100
+                %}
+
+                <p>
+                    <strong>Percentage:</strong>
+                    {{ "%.2f"|format(percentage) }}%
+                </p>
+
+                {% if percentage >= 90 %}
+
+                    <p>
+                        <strong>Grade:</strong> A+
+                    </p>
+
+                {% elif percentage >= 80 %}
+
+                    <p>
+                        <strong>Grade:</strong> A
+                    </p>
+
+                {% elif percentage >= 70 %}
+
+                    <p>
+                        <strong>Grade:</strong> B
+                    </p>
+
+                {% elif percentage >= 60 %}
+
+                    <p>
+                        <strong>Grade:</strong> C
+                    </p>
+
+                {% elif percentage >= 50 %}
+
+                    <p>
+                        <strong>Grade:</strong> D
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        <strong>Grade:</strong> F
+                    </p>
+
+                {% endif %}
+
+
+                {% if percentage >= 40 %}
+
+                    <p>
+                        <strong>Result:</strong> PASS ✅
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        <strong>Result:</strong> FAIL ❌
+                    </p>
+
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+        <hr>
+
+<h2>
+    Overall Average Percentage:
+    {{ "%.2f"|format(average_percentage) }}%
+</h2>
+
+    {% else %}
+
+        <p>
+            You have not attempted any quiz yet.
+        </p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/dashboard">
+        <button>
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+{% endblock %}
